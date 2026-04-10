@@ -1,13 +1,13 @@
 {
   "name": "ciphex",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "publishConfig": {
     "access": "public"
-  },
+  },  
   "keywords": [
     "cipher",
     "encrypt",
@@ -18,5 +18,13 @@
   "description": "Encrpyts and Decrypts text",
   "files": [
     "index.js"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rohan-shridhar/ciphex.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rohan-shridhar/ciphex/issues"
+  },
+  "homepage": "https://github.com/rohan-shridhar/ciphex#readme"
 }
