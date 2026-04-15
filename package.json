@@ -26,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/rohan-shridhar/ciphex/issues"
   },
-  "homepage": "https://github.com/rohan-shridhar/ciphex#readme"
+  "homepage": "https://github.com/rohan-shridhar/ciphex#readme",
+  "dependencies": {
+    "dotenv": "^17.4.2"
+  }
 }

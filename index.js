@@ -1,3 +1,23 @@
+const fs = require("fs");
+const path = require("path");
+
+let vigenereKey = "DEFAULT";
+try {
+  const keyEnvContent = fs.readFileSync(
+    path.join(__dirname, "key.env"),
+    "utf-8",
+  );
+  const match = keyEnvContent.match(/key\s*=\s*"([^"]+)"/);
+  if (match) {
+    vigenereKey = match[1];
+  } else {
+    const fallbackMatch = keyEnvContent.match(/key\s*=\s*([^\s]+)/);
+    if (fallbackMatch) {
+      vigenereKey = fallbackMatch[1];
+    }
+  }
+} catch (e) {}
+
 const base = 96;
 
 function generateKeys() {
@@ -35,11 +55,16 @@ function encrypt(text, keys) {
     return null;
   }
   let encryptedtext = "";
-  for (let i = 0; i < text.length; i++) {
+  for (let i = 0, j = 0; i < text.length; i++) {
     const char = text.charCodeAt(i) - 32;
-    const encryptedCharCode = (char * keys[1] + keys[0]) % base;
+    const keyCode = vigenereKey.charCodeAt(j % vigenereKey.length) - 32;
+
+    const vigenereChar = (char + keyCode) % base;
+    const encryptedCharCode = (vigenereChar * keys[1] + keys[0]) % base;
+
     const encryptedChar = String.fromCharCode(encryptedCharCode + 32);
     encryptedtext += encryptedChar;
+    j++;
   }
   return encryptedtext;
 }
@@ -49,12 +74,17 @@ function decrypt(text, keys) {
     return null;
   }
   let decryptedtext = "";
-  for (let i = 0; i < text.length; i++) {
+  for (let i = 0, j = 0; i < text.length; i++) {
     const char = text.charCodeAt(i) - 32;
-    const decryptedCharCode =
+    const keyCode = vigenereKey.charCodeAt(j % vigenereKey.length) - 32;
+
+    let decryptedCharCode =
       ((((char - keys[0]) * modInverse(keys[1])) % base) + base) % base;
+    decryptedCharCode = (((decryptedCharCode - keyCode) % base) + base) % base;
+
     const decryptedChar = String.fromCharCode(decryptedCharCode + 32);
     decryptedtext += decryptedChar;
+    j++;
   }
   return decryptedtext;
 }
