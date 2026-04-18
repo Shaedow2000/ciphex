@@ -13,7 +13,6 @@
 
 - [ ] Bug fix
 - [ ] New feature
-- [ ] UI/UX change
 - [ ] Performance improvement
 - [ ] Documentation update
 
@@ -24,9 +23,6 @@
 ## How to Test
 
 <!-- Step-by-step instructions for a reviewer to manually verify the change. -->
-
-     ### Tested in:
-     <!-- Include which browser(s) you tested in. -->
 
 ## Screenshots / Recording
 
@@ -45,11 +41,9 @@
 
 ## Checklist
 
-- [ ] Build succeeds (`bash build.sh`)
-- [ ] Tested in Chrome
-- [ ] Tested in Firefox
-- [ ] No console.log statements left in production code
-- [ ] Both manifests updated (if a new permission was added)
+- [ ] No console.log() messages left in production.
+- [ ] Refactored any new function.
+- [ ] Verified with `node test.js`
 ```
 
-[<-- Go back to CONTRIBUTING.md](CONTRIBUTING.md#pull-request-format)
+[<-- Go back to CONTRIBUTING.md](CONTRIBUTING.md)
